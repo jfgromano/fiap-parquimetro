@@ -1,0 +1,47 @@
+version: "3.9"
+services:
+  jfgr-api-parquimetro-api:
+    restart: always
+    build: 
+      context: ./../../../api
+      dockerfile: Dockerfile
+    ports:
+      - "${API_PORT}:8080"
+    networks:
+      - jfgr-parquimetro
+    environment:
+      - POSTGRES_HOST=${POSTGRES_HOST}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PORT=${POSTGRES_PORT}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - JWT_SECRET=${JWT_SECRET}
+      - API_PORT=8080
+      - RABBIT_HOST=${RABBIT_HOST}
+      - RABBIT_PASSWORD=${RABBIT_PASSWORD}
+      - RABBIT_PORT=5672
+      - RABBIT_USER=${RABBIT_USER}
+      - TZ=America/Sao_Paulo
+  jfgr-api-parquimetro-postgresql:
+    restart: always
+    build:
+      context: .
+      dockerfile: postgresql.dockerfile
+    ports:
+      - "${POSTGRES_PORT}:${POSTGRES_PORT}"
+    environment:
+      - POSTGRES_HOST=${POSTGRES_HOST}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - PGPORT=${POSTGRES_PORT}
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - jfgr-api-parquimetro-pgdata:/var/lib/postgresql/data
+    networks:
+      - jfgr-parquimetro
+volumes: 
+  jfgr-api-parquimetro-pgdata:
+networks:
+  jfgr-parquimetro:
+    external: true

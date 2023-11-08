@@ -1,0 +1,538 @@
+{
+	"info": {
+		"_postman_id": "9f792b8d-80d5-449a-84fc-e5a33dac0f8d",
+		"name": "parquimetro-tech-challenge",
+		"description": "Api de comunicação para sistema de parquimetro",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9957799"
+	},
+	"item": [
+		{
+			"name": "Api",
+			"item": [
+				{
+					"name": "Autenticação",
+					"item": [
+						{
+							"name": "Cria usuario",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"teste221@outlook.com\",\n    \"senha\": \"123456\",\n    \"nome\": \"Joao\",\n    \"sexo\": \"M\",\n    \"dataDeNascimento\": \"01/02/1990\",\n    \"cpf\": 42555107843,\n    \"endereco\": {\n        \"rua\": \"Rua teste\",\n        \"numero\": \"12\",\n        \"bairro\": \"Bairro XYZ\",\n        \"cidade\": \"São Paulo\",\n        \"estado\": \"SP\"\n    },\n    \"contato\" : {\n        \"email\": \"asddsa@asd.com.br\",\n        \"numeroCelular\": \"(11) 95842-8545\"\n    }\n\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api-url}}/auth/cadastrar",
+									"host": [
+										"{{api-url}}"
+									],
+									"path": [
+										"auth",
+										"cadastrar"
+									],
+									"query": [
+										{
+											"key": "email",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "senha",
+											"value": "1234567",
+											"disabled": true
+										}
+									]
+								},
+								"description": "Cria um usuario que tera acesso a api"
+							},
+							"response": []
+						},
+						{
+							"name": "Autentica",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"teste2@outlook.com\",\n    \"senha\": \"123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api-url}}/auth/jwt",
+									"host": [
+										"{{api-url}}"
+									],
+									"path": [
+										"auth",
+										"jwt"
+									]
+								},
+								"description": "Autentica utilizando o usuario criado anteriormente, retornando um token JWT que sera necessario para todas as requisições da API"
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "noauth"
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Enderecos",
+					"item": [
+						{
+							"name": "Atualizar endereço",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"rua\": \"Rua teste\",\n    \"numero\": \"15\",\n    \"bairro\": \"Bairro XYZ\",\n    \"cidade\": \"São Paulo\",\n    \"estado\": \"SP\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api-url}}/enderecos/355e9ed9-198a-4b4c-a7fd-6e9e15a9e2ae",
+									"host": [
+										"{{api-url}}"
+									],
+									"path": [
+										"enderecos",
+										"355e9ed9-198a-4b4c-a7fd-6e9e15a9e2ae"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Obter endereço",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api-url}}/enderecos",
+									"host": [
+										"{{api-url}}"
+									],
+									"path": [
+										"enderecos"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Contato",
+					"item": [
+						{
+							"name": "Atualizar contato",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"asddsa@asd.com.br\",\n    \"numeroCelular\": \"(11) 97887-8585\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api-url}}/contatos/77cf765b-5530-48b3-a17a-9f5101d2d4df",
+									"host": [
+										"{{api-url}}"
+									],
+									"path": [
+										"contatos",
+										"77cf765b-5530-48b3-a17a-9f5101d2d4df"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Obter contato",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api-url}}/contatos",
+									"host": [
+										"{{api-url}}"
+									],
+									"path": [
+										"contatos"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Veiculo",
+					"item": [
+						{
+							"name": "Cadastrar veiculo",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"placa\": \"JRC6752\",\n    \"cor\": \"azul\",\n    \"modelo\": \"gol\",\n    \"marca\": \"fiat\",\n    \"estado\": \"SP\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api-url}}/veiculos",
+									"host": [
+										"{{api-url}}"
+									],
+									"path": [
+										"veiculos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Atualizar veiculo",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"placa\": \"JRC6753\",\n    \"cor\": \"azuls\",\n    \"modelo\": \"gol\",\n    \"marca\": \"fiat\",\n    \"estado\": \"SP\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api-url}}/veiculos/9eb3cff4-a305-4dc4-ab49-2dbd741e6043",
+									"host": [
+										"{{api-url}}"
+									],
+									"path": [
+										"veiculos",
+										"9eb3cff4-a305-4dc4-ab49-2dbd741e6043"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remover veiculo",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{api-url}}/veiculos/46061f52-817a-4fa7-ae46-50e01b96514d",
+									"host": [
+										"{{api-url}}"
+									],
+									"path": [
+										"veiculos",
+										"46061f52-817a-4fa7-ae46-50e01b96514d"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar veiculos",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api-url}}/veiculos",
+									"host": [
+										"{{api-url}}"
+									],
+									"path": [
+										"veiculos"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Cartao",
+					"item": [
+						{
+							"name": "Cadastrar Cartao",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"ultimosQuatroDigitos\": \"4552\",\n    \"token\": \"JKASHDKJY2348HLKASDH2NCDFO3ASYD9823HRLK23HJN4OUA902SAD\",\n    \"tipo\": \"credito\",\n    \"principal\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api-url}}/cartoes",
+									"host": [
+										"{{api-url}}"
+									],
+									"path": [
+										"cartoes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Marcar como principal",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{api-url}}/cartoes/9f9a13fe-d726-423f-95a3-5bd0f37c3fc5/principal",
+									"host": [
+										"{{api-url}}"
+									],
+									"path": [
+										"cartoes",
+										"9f9a13fe-d726-423f-95a3-5bd0f37c3fc5",
+										"principal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar cartoes",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api-url}}/cartoes",
+									"host": [
+										"{{api-url}}"
+									],
+									"path": [
+										"cartoes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remover cartao",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{api-url}}/cartoes/9f9a13fe-d726-423f-95a3-5bd0f37c3fc5",
+									"host": [
+										"{{api-url}}"
+									],
+									"path": [
+										"cartoes",
+										"9f9a13fe-d726-423f-95a3-5bd0f37c3fc5"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Pedido",
+					"item": [
+						{
+							"name": "Checkout pedido",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"tipoPeriodo\": \"variavel\",\n    \"idVeiculo\": \"9eb3cff4-a305-4dc4-ab49-2dbd741e6043\",\n    \"horas\": 5,\n    \"pagamento\": {\n        \"tipoPagamento\": \"CREDITO\",\n        \"idCartao\": \"7e010b8e-5d49-4e00-a163-255047de9b36\"\n\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api-url}}/pedidos",
+									"host": [
+										"{{api-url}}"
+									],
+									"path": [
+										"pedidos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Status pedido",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api-url}}/pedidos/6b8a1e5c-b362-4f47-9f98-a0003aeea5a8",
+									"host": [
+										"{{api-url}}"
+									],
+									"path": [
+										"pedidos",
+										"6b8a1e5c-b362-4f47-9f98-a0003aeea5a8"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Recibo",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api-url}}/pedidos/6b8a1e5c-b362-4f47-9f98-a0003aeea5a8/recibo",
+									"host": [
+										"{{api-url}}"
+									],
+									"path": [
+										"pedidos",
+										"6b8a1e5c-b362-4f47-9f98-a0003aeea5a8",
+										"recibo"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Finalizar periodo",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{api-url}}/pedidos/6b8a1e5c-b362-4f47-9f98-a0003aeea5a8/finalizar",
+									"host": [
+										"{{api-url}}"
+									],
+									"path": [
+										"pedidos",
+										"6b8a1e5c-b362-4f47-9f98-a0003aeea5a8",
+										"finalizar"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0ZTJAb3V0bG9vay5jb20iLCJpc3MiOiJ0ZWNoLWNoYWxsZW5nZSIsImlhdCI6MTY5OTY3MTc5OSwiZXhwIjoxNjk5NjcyOTk5fQ.2OY3RI1zoitTEVoyq3jGUtjboVzaHGJqvIy46wKJe6nqp1bmW7I7YOG0Wyi31a-eI4lOziPKrOx9AiB9qL3X7Q",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "api-url",
+			"value": "http://localhost:9025",
+			"type": "string"
+		}
+	]
+}

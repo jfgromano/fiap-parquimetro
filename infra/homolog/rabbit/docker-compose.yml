@@ -1,0 +1,19 @@
+services:
+  jfgr-parquimetro-rabbitmq:
+    restart: always
+    image: rabbitmq:3.7.8-management
+    ports:
+      - "${RABBIT_PORT}:5672"
+      - "15672:15672"
+    networks:
+      - jfgr-parquimetro
+    environment:
+      - RABBITMQ_DEFAULT_USER=${RABBIT_USER}
+      - RABBITMQ_DEFAULT_PASS=${RABBIT_PASSWORD}
+    volumes:
+      - jfgr-parquimetro-rabbitmq:/var/lib/rabbitmq
+volumes:
+  jfgr-parquimetro-rabbitmq:
+networks:
+  jfgr-parquimetro:
+    external: true
