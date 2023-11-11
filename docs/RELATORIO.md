@@ -31,8 +31,10 @@ Finaliza o periodo de estacionamento, cancelando qualquer futura notificação e
 ### Rota Recibo
 Essa rota so fica disponivel apos finalizar o periodo, ela exibe os detalhes de todo o pedido.
 
-##Desafios
+## Desafios
 
 Acho que o maior desafio aqui foi a comunicação entre os serviços sem criar muita dependencia entre eles. é possivel escalar facilmente cada microserviço usando um auto scaling aws por exemplo pois nenhum serviço guarda estados na memoria ou disco, toda comunicação é feita via uma fila do rabbitMQ e nao tem nenhuma dependencia em rotas http por exemplo.
 
 Cada microserviço tem seu proprio banco de dados e isso reduz muito a carga em grande escala.
+
+![ARQUITETURA](arquitetura.png)
